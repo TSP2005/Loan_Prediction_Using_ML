@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Loan Eligibility Prediction</h1>
+        <p class="intro-text">Click the button below to check your loan eligibility:</p>
+
+        <div class="loan-buttons">
+            <a href="{{ url_for('home_loan') }}">
+                <button class="loan-btn">Home Loan</button>
+            </a>
+            <a href="{{ url_for('personal_loan') }}">
+                <button class="loan-btn">Personal Loans</button>
+            </a>
+            <a href="{{ url_for('vehicle_loan') }}">
+                <button class="loan-btn">Vehicle Loans</button>
+            </a>
+            <a href="{{ url_for('other_loan') }}">
+                <button class="loan-btn">Other Loans</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

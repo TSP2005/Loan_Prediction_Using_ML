@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Loan Eligibility</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Loan Eligibility Prediction</h1>
+
+        {% if not result %}
+        <form method="POST" action="/personal_loan">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience (years):</label>
+                <input type="number" id="experience" name="experience" required>
+            </div>
+            <div class="form-group">
+                <label for="income">Income (annual):</label>
+                <input type="number" id="income" name="income" required>
+            </div>
+            <div class="form-group">
+                <label for="family">Family Members:</label>
+                <input type="number" id="family" name="family" required>
+            </div>
+            <div class="form-group">
+                <label for="ccavg">Credit Card Average Spending:</label>
+                <input type="number" id="ccavg" name="ccavg" min="0" max="10" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Education Level:</label>
+                <select id="education" name="education" required>
+                    <option value="1">Undergraduate</option>
+                    <option value="2">Graduate</option>
+                    <option value="3">Advanced/Professional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="mortgage">Mortgage:</label>
+                <input type="number" id="mortgage" name="mortgage" required>
+            </div>
+            <div class="form-group">
+                <label for="securities_account">Securities Account:</label>
+                <select id="securities_account" name="securities_account" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cd_account">CD Account:</label>
+                <select id="cd_account" name="cd_account" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="online">Online Banking:</label>
+                <select id="online" name="online" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="credit_card">Credit Card User:</label>
+                <select id="credit_card" name="credit_card" required>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        {% endif %}
+
+        {% if result %}
+        <div class="result-box">
+            <h2>Prediction Result: <span class="result-{{ result.lower() }}">{{ result }}</span></h2>
+            <p>Model used: {{ model }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            <h2>Error: {{ error }}</h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; TSP</p>
+    </footer>
+</body>
+</html>
